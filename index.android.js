@@ -12,20 +12,65 @@ import {
   View
 } from 'react-native';
 
+import CurrentMatches from './screens/CurrentMatches';
+
+const DATA = {
+ matches: [{
+id: 10,
+ team1:{
+  id: 1,
+  name: 'Sokol'
+ },
+ team2:{
+  id: 2,
+  name: 'Spartak'
+ },
+ location:{
+  id: 2,
+  name: 'Avangard'
+ },
+ status: "complete",
+ league: {
+  id:4,
+  name: 'First league ADFS'
+ },
+ date: '1212121212',
+ tour: 1,
+ goal1: 3,
+ goal2: 5
+},
+{
+id: 101,
+ team1:{
+  id: 12,
+  name: 'Sokol1'
+ },
+ team2:{
+  id: 22,
+  name: 'Spartak1'
+ },
+ location:{
+  id: 2,
+  name: 'Avangard1'
+ },
+ status: "complete",
+ league: {
+  id:4,
+  name: 'First league ADFS'
+ },
+ date: '1212121212',
+ tour: 1,
+ goal1: 3,
+ goal2: 5
+}
+]};
+
 export default class sarfootball_mobile extends Component {
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+       <CurrentMatches />
       </View>
     );
   }
