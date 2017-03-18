@@ -3,8 +3,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  TouchableHighlight
 } from 'react-native';
+
+import { Route, Link } from 'react-router-native';
 
 
 const Team = ({isLeft=false, id, name}) => (
@@ -30,25 +33,30 @@ const Result = ({status, goal1, goal2, date, time}) => {
     </View>
 )};
 
-const Match = ({team1, team2, ...res}) => (
+const Match = ({ team1, team2, ...res}) => (
+    <View>
+        <Text style={styles.match_date}>{res.date}</Text>
+        <TouchableHighlight onPress={()=>alert(res.id)} >
     <View style={styles.match}>
         <Team isLeft={true}  {...team1} />
         <Result {...res} />
         <Team {...team2} />
     </View>
+    </TouchableHighlight>
+    </View>
 );
 
 const League = ({id, name, matches}) =>(
     <View>
-        <Text>{name}</Text>
+        <Text style={styles.league_name}>{name}</Text>
         <View style={styles.list}>
-        {matches.map(match => <Match key={match.id} {...match} />)}
+        {matches.map(match => <Match key={match.id}  {...match} />)}
     </View>
     </View>
 );
 
 
-const MatchList = ({id, name, matches}) => {
+const MatchList = ({ id, name, matches }) => {
 
     const firstL = matches.filter(m => m.league && m.league.id === 1);
 
@@ -61,7 +69,7 @@ const MatchList = ({id, name, matches}) => {
             <League {...firstL[0].league} matches={firstL}  />
         }
         {secondL.length > 0 &&
-            <League {...secondL[0].league} matches={secondL}  />
+            <League {...secondL[0].league} matches={secondL} />
         }
         {friendL.length > 0 &&
             <League {...friendL[0].league} matches={friendL}  />
@@ -130,6 +138,15 @@ const styles = StyleSheet.create({
       color: 'red',
       borderWidth: 1,
       borderColor: 'red',
+  },
+  league_name:{
+      fontSize: 18,
+    fontWeight: 'bold',
+  },
+  match_date:{
+      fontSize: 16,
+    fontWeight: 'bold',
+    color: '#999999',
   }
 
 });

@@ -8,21 +8,17 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import MatchList from '../components/MatchList';
-
-class CurrentMatches extends Component {
-
-    constructor(){
-        super();
+class MatchScreen extends Component {
+    constructor(props){
+        super(props);
         this.state = {
-            matches:[],
             loading:false,
             error:false,
         } 
     };
     componentDidMount(){
-        this.setState({loading:true});
-        this.fetchData().done();
+        //this.setState({loading:true});
+        //this.fetchData().done();
     };
 
     async fetchData() {
@@ -46,15 +42,14 @@ class CurrentMatches extends Component {
             return(<View>
             </View>);
     }
-    if (this.state.matches){
+    
         return(
             <View>
-                 <MatchList {...this.state}  />
+                 <Text>вввв</Text>
             </View>
         );
-    };
 };
 
 }
 
-export default CurrentMatches;
+export default MatchScreen;

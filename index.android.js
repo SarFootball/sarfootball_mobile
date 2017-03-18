@@ -9,75 +9,43 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator
 } from 'react-native';
 
 import CurrentMatches from './screens/CurrentMatches';
+import MatchScreen from './screens/MatchScreen';
+import TableScreen from './screens/TableScreen';
 
-const DATA = {
- matches: [{
-id: 10,
- team1:{
-  id: 1,
-  name: 'Sokol'
- },
- team2:{
-  id: 2,
-  name: 'Spartak'
- },
- location:{
-  id: 2,
-  name: 'Avangard'
- },
- status: "complete",
- league: {
-  id:4,
-  name: 'First league ADFS'
- },
- date: '1212121212',
- tour: 1,
- goal1: 3,
- goal2: 5
-},
-{
-id: 101,
- team1:{
-  id: 12,
-  name: 'Sokol1'
- },
- team2:{
-  id: 22,
-  name: 'Spartak1'
- },
- location:{
-  id: 2,
-  name: 'Avangard1'
- },
- status: "complete",
- league: {
-  id:4,
-  name: 'First league ADFS'
- },
- date: '1212121212',
- tour: 1,
- goal1: 3,
- goal2: 5
-}
-]};
+
 
 export default class sarfootball_mobile extends Component {
+
+  navScene(route, navigator) {
+		if(route.id == 'main'){
+			return (<CurrentMatches navigator={navigator} />);
+		}
+		if(route.id == 'table'){
+			return (<TableScreen navigator={navigator} />);
+		}
+	}
 
   render() {
     return (
       <View style={styles.container}>
-       <CurrentMatches />
+        <Navigator
+					initialRoute={{id: 'table'}}
+					renderScene={this.navScene}
+				/>
       </View>
+     
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+	  flex: 1,
     width:'100%',
     padding:15,
   },

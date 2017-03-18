@@ -8,12 +8,17 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import MatchList from '../components/MatchList';
 
-class CurrentMatches extends Component {
+class CalendarScreen extends Component {
 
-    constructor(){
-        super();
+    navigate(routeName){
+		this.props.navigator.push({
+			name: routeName
+		});
+	};
+
+    constructor(props){
+        super(props);
         this.state = {
             matches:[],
             loading:false,
@@ -21,8 +26,8 @@ class CurrentMatches extends Component {
         } 
     };
     componentDidMount(){
-        this.setState({loading:true});
-        this.fetchData().done();
+        //this.setState({loading:true});
+        //this.fetchData().done();
     };
 
     async fetchData() {
@@ -38,6 +43,7 @@ class CurrentMatches extends Component {
     };
 
     render(){
+        alert('Ошибка подключения к серверу.');
         if(this.state.loading){
             return( <ActivityIndicator size='large' style={{height:80}} />);
         }
@@ -46,15 +52,9 @@ class CurrentMatches extends Component {
             return(<View>
             </View>);
     }
-    if (this.state.matches){
-        return(
-            <View>
-                 <MatchList {...this.state}  />
-            </View>
-        );
-    };
+   
 };
 
 }
 
-export default CurrentMatches;
+export default CalendarScreen;
