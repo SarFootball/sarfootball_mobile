@@ -9,6 +9,8 @@ import {
   ListView
 } from 'react-native';
 
+import MenuItem from '../components/MenuItem';
+
 
 
 class TableScreen extends Component {
@@ -43,6 +45,15 @@ class TableScreen extends Component {
 	changeLeague(league){
 		this.setState({loading:true});
         this.fetchData(league).done();
+	};
+	
+	leagueMenu1(league){
+		return (
+			<View style={styles.league_menu}>
+			<MenuItem onClick={()=>this.changeLeague(1)} current={league===1} text='Высшая лига' />
+			<MenuItem onClick={()=>this.changeLeague(2)} current={league===2} text='Первая лига' />
+			</View>
+		)
 	};
 	
 	legueMenu(league){
@@ -105,7 +116,7 @@ class TableScreen extends Component {
 		
         return(
             <View>
-			{this.legueMenu(this.state.league)}
+			{this.legueMenu1(this.state.league)}
 			<ListView
 				dataSource={this.state.teams}
 				renderRow={this._renderRow}
